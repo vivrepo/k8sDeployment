@@ -7,8 +7,8 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $ECR_REPO
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 476114141387.dkr.ecr.ap-south-1.amazonaws.com
       - docker build -t webapp .
-      - docker tag webapp:latest 296062577418.dkr.ecr.ap-south-1.amazonaws.com/webapp:latest
-      - docker push 296062577418.dkr.ecr.ap-south-1.amazonaws.com/webapp:latest
+      - docker tag webapp:latest 476114141387.dkr.ecr.ap-south-1.amazonaws.com/webapp:latest
+      - docker push 476114141387.dkr.ecr.ap-south-1.amazonaws.com/webapp:latest
       - echo Image build and push completed.
