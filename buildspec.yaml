@@ -14,7 +14,7 @@ phases:
       - docker push 476114141387.dkr.ecr.ap-south-1.amazonaws.com/webapp:latest
       - echo Image build and push completed.
 
-  postbuild:
+  post_build:
     commands:
       - cd ./k8s
       - echo Updating Kubernetes deployment...
