@@ -2,9 +2,19 @@ version: 0.2
 env:
   variables:
     AWS_REGION: ap-south-1
-    ECR_REPO: 296062577418.dkr.ecr.ap-south-1.amazonaws.com
+    ECR_REPO: 476114141387.dkr.ecr.ap-south-1.amazonaws.com/webapp
     CLUSTER_NAME: demo-cluster-1
 phases:
+  install:
+    commands: 
+      - curl -o /usr/local/bin/kubectl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      - chmod +x /usr/local/bin/kubectl
+      - kubectl version --client
+      - echo "Installing eksctl..."
+      - curl -sLO "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz"
+      - tar xz -C /usr/local/bin -f eksctl_$(uname -s)_amd64.tar.gz
+      - eksctl version
+
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
